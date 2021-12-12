@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58BC96CA2765F23A00FFEC10 /* explosionParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 58BC96C92765F23A00FFEC10 /* explosionParticle.sks */; };
+		58BC96CC276609AC00FFEC10 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 58BC96CB276609AC00FFEC10 /* TitleScene.sks */; };
+		58BC96CE276609D700FFEC10 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC96CD276609D700FFEC10 /* TitleScene.swift */; };
 		58FD5F902765BA6F0013CFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FD5F8F2765BA6F0013CFD1 /* AppDelegate.swift */; };
 		58FD5F922765BA6F0013CFD1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 58FD5F912765BA6F0013CFD1 /* GameScene.sks */; };
 		58FD5F942765BA6F0013CFD1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 58FD5F932765BA6F0013CFD1 /* Actions.sks */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58BC96C92765F23A00FFEC10 /* explosionParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosionParticle.sks; sourceTree = "<group>"; };
+		58BC96CB276609AC00FFEC10 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
+		58BC96CD276609D700FFEC10 /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		58FD5F8C2765BA6F0013CFD1 /* SpaceShootingGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceShootingGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FD5F8F2765BA6F0013CFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58FD5F912765BA6F0013CFD1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -67,6 +73,9 @@
 				58FD5F992765BA6F0013CFD1 /* Main.storyboard */,
 				58FD5F9C2765BA700013CFD1 /* Assets.xcassets */,
 				58FD5F9E2765BA700013CFD1 /* LaunchScreen.storyboard */,
+				58BC96C92765F23A00FFEC10 /* explosionParticle.sks */,
+				58BC96CB276609AC00FFEC10 /* TitleScene.sks */,
+				58BC96CD276609D700FFEC10 /* TitleScene.swift */,
 			);
 			path = SpaceShootingGame;
 			sourceTree = "<group>";
@@ -130,10 +139,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				58FD5F9B2765BA6F0013CFD1 /* Main.storyboard in Resources */,
+				58BC96CA2765F23A00FFEC10 /* explosionParticle.sks in Resources */,
 				58FD5F922765BA6F0013CFD1 /* GameScene.sks in Resources */,
 				58FD5F9D2765BA700013CFD1 /* Assets.xcassets in Resources */,
 				58FD5FA02765BA700013CFD1 /* LaunchScreen.storyboard in Resources */,
 				58FD5F942765BA6F0013CFD1 /* Actions.sks in Resources */,
+				58BC96CC276609AC00FFEC10 /* TitleScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +158,7 @@
 				58FD5F962765BA6F0013CFD1 /* GameScene.swift in Sources */,
 				58FD5F982765BA6F0013CFD1 /* GameViewController.swift in Sources */,
 				58FD5F902765BA6F0013CFD1 /* AppDelegate.swift in Sources */,
+				58BC96CE276609D700FFEC10 /* TitleScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
