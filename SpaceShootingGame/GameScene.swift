@@ -4,7 +4,7 @@
 //
 //  Created by 김민종 on 2021/12/12.
 //
-
+import Foundation
 import SpriteKit
 import GameplayKit
 
@@ -49,8 +49,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         
     override func didMove(to view: SKView) {
+
         self.backgroundColor = offBlackColor
         physicsWorld.contactDelegate = self
+        print("Current thread is \(#function) is \(Thread.current)")
         
         resetGameVariableOnStart()
         
@@ -75,16 +77,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.isDynamic = false
         player.name = "playerName"
         self.addChild(player)
+
     }
     
     func resetGameVariableOnStart() {
         isAlive = true
         score = 0
+
         
     }
     
     func leadprojectTile() {
-        projectTile = SKSpriteNode(imageNamed: "projecttile")
+        projectTile = SKSpriteNode(imageNamed: "projectile")
         projectTile.size = projectTileSize
         projectTile.position = CGPoint(x: player.position.x, y: player.position.y)
         
@@ -100,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveProjectTileToTop()
 
         self.addChild(projectTile)
+
         
         
     }
@@ -129,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         moveEnemyToFloat()
         self.addChild(enemy)
+
     }
     
     func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat {
@@ -143,6 +149,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnStars() {
+        
+        
         let randomSize = Int(arc4random_uniform(12) + 12)
         starSize = CGSize(width: randomSize, height: randomSize)
         star = SKSpriteNode(imageNamed: "bokeh")
@@ -173,12 +181,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(mainLabel)
     }
     func spawnScoreLabel() {
-        scoreLabel = SKLabelNode(fontNamed: "futura")
-        scoreLabel.fontSize = 60
-        scoreLabel.fontColor = offWhiteColor
-        scoreLabel.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 130)
-        scoreLabel.text = "Score: \(score)"
-        self.addChild(scoreLabel)
+        let threadClass = ThreadTest()
+        threadClass.createThread()
+        
+        DispatchQueue.global(qos: .background).async {
+            scoreLabel = SKLabelNode(fontNamed: "futura")
+            scoreLabel.fontSize = 60
+            scoreLabel.fontColor = offWhiteColor
+            scoreLabel.position = CGPoint(x: self.frame.midX, y: self.frame.minY + 130)
+            scoreLabel.text = "Score: \(score)"
+            self.addChild(scoreLabel)
+        }
+        print("Current thread is \(#function) is \(Thread.current)")
+
+
     }
     
     func fireprojectTile() {
@@ -198,6 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let sequence = SKAction.sequence([wait, spawn])
         self.run(SKAction.repeatForever(sequence))
+
     }
     
     func timerStarSpawn() {
@@ -229,6 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             playerEnemyCollision(contactA: firstBody.node as! SKSpriteNode, contactB: secondBody.node as! SKSpriteNode)
         }
+
     }
     
     func enemyProectTileCollision(contactA: SKSpriteNode, contactB: SKSpriteNode) {
@@ -270,15 +288,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func gameOverLogic() {
-        mainLabel.fontSize = 60
-        mainLabel.text = "Game Over"
+
+        DispatchQueue.global(qos: .background).async {
+            mainLabel.fontSize = 60
+            mainLabel.text = "Game Over"
+        }
+        
+
         
         resetTheGame()
     }
     
     
     func updateScore() {
-        scoreLabel.text = "Score: \(score)"
+        let threadClass = ThreadTest()
+        threadClass.createThread()
+        
+        DispatchQueue.global(qos: .background).async {
+            scoreLabel.text = "Score: \(score)"
+        }
+        print("Current thread is \(#function) is \(Thread.current)")
+
     }
     
     func spawnExplosion(bodyTemp: SKSpriteNode) {
@@ -294,6 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explosion.removeFromParent()
         }
         self.run(SKAction.sequence([wait, removeExplosion]))
+
     }
     
     func resetTheGame() {
@@ -309,6 +340,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let sequence = SKAction.sequence([wait, changeScene])
         self.run(SKAction.repeat(sequence, count: 1))
+
     }
     
     func movePlayerOfScreen() {
@@ -363,4 +395,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    override func update(_ currentTime: TimeInterval) {
 //        // Called before each frame is rendered
 //    }
+}
+
+class ThreadTest {
+    func createThread() {
+        Thread.detachNewThreadSelector(#selector(print), toTarget: self, with: nil)
+    }
+    @objc func print() {
+        Swift.print("Thread loopingggg")
+    }
 }
